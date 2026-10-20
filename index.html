@@ -181,6 +181,10 @@ var OFFER_URL = 'https://t.deriv.link?t=FTKHU4SSTCVV';
   try { if (imp) sessionStorage.setItem('pa_imp', imp); else imp = sessionStorage.getItem('pa_imp') || ''; } catch(e){}
   document.getElementById('imp').value = imp;
 
+  // PopAds website ID — LP URL should contain &siteid=[WEBSITEID]
+  var siteid = q.get('siteid') || q.get('websiteid') || '';
+  try { if (siteid) sessionStorage.setItem('pa_site', siteid); else siteid = sessionStorage.getItem('pa_site') || ''; } catch(e){}
+
   // Illustrative chart: random walk with ups and downs, drawn once
   (function(){
     var pts = [], y = 50, n = 40;
@@ -230,7 +234,7 @@ var OFFER_URL = 'https://t.deriv.link?t=FTKHU4SSTCVV';
     var payload = {
       name: f.name.value.trim(), email: f.email.value.trim(),
       phone: phone.value.replace(/\D/g,''), consent: f.consent.checked ? '1' : '',
-      website: f.website.value, imp: f.imp.value, ua: navigator.userAgent
+      website: f.website.value, imp: f.imp.value, siteid: siteid, ua: navigator.userAgent
     };
     // text/plain avoids a CORS preflight, which Apps Script can't answer
     fetch(APPS_SCRIPT_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) })
