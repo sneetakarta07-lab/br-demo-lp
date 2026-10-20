@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E3B43">
+<title>Conta Demo Grátis – Pratique sem Risco</title>
+<meta name="description" content="Pratique trading com US$ 10.000 virtuais numa conta demo gratuita. Receba o passo a passo em português.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E3B43;      /* deep teal: app bar, text */
+  --paper:#F3F7F6;    /* screen background */
+  --leaf:#1FA463;     /* action */
+  --leaf-d:#168550;
+  --sun:#FFD23F;      /* highlight */
+  --coral:#E5484D;    /* errors */
+  --mute:#5B7479;
+  --line:#D5E2E0;
+  --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Figtree,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#DCE8E6;color:var(--ink);line-height:1.45}
+.app{max-width:440px;min-height:100dvh;margin:0 auto;background:var(--paper);display:flex;flex-direction:column;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+@media (min-width:520px){body{padding:24px 0}.app{min-height:auto;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(14,59,67,.25)}}
+
+/* App bar */
+.bar{background:var(--ink);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;display:flex;align-items:center;gap:8px}
+.logo i{width:22px;height:22px;border-radius:7px;background:var(--sun);display:inline-block;position:relative}
+.logo i::after{content:"";position:absolute;left:5px;right:5px;top:10px;height:2px;background:var(--ink);transform:rotate(-30deg)}
+.pill{font-size:12.5px;font-weight:700;background:rgba(255,255,255,.12);padding:6px 11px;border-radius:999px}
+
+/* Balance card – the hero */
+.top{background:var(--ink);color:#fff;padding:6px 18px 54px;border-radius:0 0 28px 28px}
+.bal small{display:block;color:#A9C6C9;font-size:14px}
+.bal strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:44px;letter-spacing:-1px;line-height:1.05;margin:2px 0 4px}
+.bal strong span{font-size:24px;opacity:.7;margin-right:4px}
+.tag{font-style:normal;display:inline-block;background:var(--sun);color:var(--ink);font-weight:700;font-size:12.5px;padding:4px 10px;border-radius:8px}
+.chart{display:block;width:100%;height:56px;margin-top:10px}
+.chart path{fill:none;stroke:var(--sun);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.chart .area{fill:url(#g);stroke:none}
+.chart-note{font-size:11.5px;color:#89A9AC;margin-top:2px}
+
+/* Sheet */
+.sheet{background:var(--card);margin:-34px 12px 0;border-radius:24px;padding:22px 18px 20px;box-shadow:0 10px 30px rgba(14,59,67,.10);position:relative}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:27px;line-height:1.12;letter-spacing:-.4px;margin-bottom:8px}
+.sub{color:var(--mute);font-size:15.5px;margin-bottom:18px}
+
+.field{position:relative;margin-bottom:12px}
+.field input{width:100%;height:56px;border:1.5px solid var(--line);border-radius:16px;background:var(--paper);font:500 16px Figtree,sans-serif;color:var(--ink);padding:20px 14px 4px;outline:none;transition:border-color .15s,background .15s}
+.field label{position:absolute;left:15px;top:17px;font-size:16px;color:var(--mute);pointer-events:none;transition:top .15s,font-size .15s}
+.field input:focus,.field input:not(:placeholder-shown){background:#fff}
+.field input:focus{border-color:var(--ink)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label{top:7px;font-size:12px;font-weight:700}
+.field.tel input{padding-left:58px}
+.field.tel .cc{position:absolute;left:14px;top:22px;font-weight:700;font-size:16px;color:var(--ink)}
+.field.tel label{left:58px}
+.field input.bad{border-color:var(--coral);background:#FFF5F5}
+
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--mute);margin:6px 2px 4px;cursor:pointer}
+.consent input{flex:0 0 22px;width:22px;height:22px;margin-top:1px;accent-color:var(--leaf)}
+.consent a{color:var(--ink);font-weight:700}
+.consent.bad{color:var(--coral)}
+
+.msg{font-size:14px;min-height:20px;margin-top:10px;font-weight:600}
+.msg.e{color:var(--coral)}.msg.ok{color:var(--leaf-d)}
+
+.btn{display:block;width:100%;height:58px;border:0;border-radius:18px;background:var(--leaf);color:#fff;font:800 17.5px 'Bricolage Grotesque',sans-serif;letter-spacing:.2px;cursor:pointer;box-shadow:0 6px 0 var(--leaf-d);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--leaf-d)}
+.btn[disabled]{opacity:.65;cursor:wait}
+.btn:focus-visible,.field input:focus-visible,.consent input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+/* Facts row */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 12px 0}
+.fact{background:var(--card);border-radius:18px;padding:13px 10px;text-align:center;font-size:12.5px;color:var(--mute)}
+.fact b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:var(--ink);margin-bottom:2px}
+
+/* Steps – a real sequence */
+.steps{margin:22px 18px 0}
+.steps h2{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin-bottom:10px}
+.steps ol{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(s);flex:0 0 28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+.steps li span{color:var(--mute);display:block;font-size:13.5px}
+
+footer{margin:22px 18px 0;font-size:12px;color:var(--mute)}
+footer p{margin-bottom:8px}
+.risk{background:#FFF4D6;border-radius:14px;padding:12px;color:#6A5300}
+
+/* Sticky CTA – appears when the form scrolls away */
+.dock{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--paper) 70%,rgba(243,247,246,0));transform:translateY(110%);transition:transform .25s ease;z-index:10}
+.dock.on{transform:none}
+.dock .btn{max-width:408px;margin:0 auto}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="logo"><i aria-hidden="true"></i>Demo Já</div>
+    <div class="pill">🇧🇷 Português</div>
+  </header>
+
+  <section class="top" aria-label="Exemplo de saldo da conta demo">
+    <div class="bal">
+      <small>Saldo de prática na conta demo</small>
+      <strong><span>US$</span>10.000,00</strong>
+      <em class="tag">Dinheiro virtual, sem risco</em>
+    </div>
+    <svg class="chart" id="chart" viewBox="0 0 400 84" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD23F" stop-opacity=".28"/><stop offset="1" stop-color="#FFD23F" stop-opacity="0"/></linearGradient></defs>
+      <path class="area" id="area"/><path id="line"/>
+    </svg>
+    <div class="chart-note">Gráfico ilustrativo</div>
+  </section>
+
+  <main class="sheet" id="form">
+    <h1>Treine trading no celular com saldo virtual</h1>
+    <p class="sub">Cadastre-se e receba por e-mail e WhatsApp o passo a passo para abrir sua conta demo gratuita.</p>
+
+    <form id="leadForm" novalidate>
+      <div class="field"><input type="text" id="name" name="name" autocomplete="name" placeholder=" " required><label for="name">Nome completo</label></div>
+      <div class="field"><input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder=" " required><label for="email">E-mail</label></div>
+      <div class="field tel"><span class="cc">+55</span><input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel-national" placeholder=" " maxlength="16" required><label for="phone">WhatsApp com DDD</label></div>
+
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="imp" id="imp">
+
+      <label class="consent" id="consentRow"><input type="checkbox" id="consent" name="consent" value="1">
+        <span>Aceito receber contato por e-mail e WhatsApp e concordo com a <a href="#privacidade">Política de Privacidade</a>.</span></label>
+
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+      <button type="submit" class="btn" id="btn">Quero minha conta demo</button>
+    </form>
+  </main>
+
+  <div class="facts">
+    <div class="fact"><b>Grátis</b>sem depósito para praticar</div>
+    <div class="fact"><b>24/7</b>índices sintéticos, até no fim de semana</div>
+    <div class="fact"><b>2 min</b>para se cadastrar</div>
+  </div>
+
+  <section class="steps">
+    <h2>Como funciona</h2>
+    <ol>
+      <li><div>Preencha o formulário<span>Leva menos de um minuto.</span></div></li>
+      <li><div>Abra a conta demo<span>Você vai para a plataforma parceira.</span></div></li>
+      <li><div>Pratique no seu ritmo<span>Aprenda com saldo virtual antes de usar dinheiro real.</span></div></li>
+    </ol>
+  </section>
+
+  <footer>
+    <p class="risk"><b>Aviso de risco:</b> negociar derivativos, CFDs e opções envolve alto risco e pode resultar na perda de todo o capital investido. Não há garantia de lucro. Opere só com dinheiro que você pode perder.</p>
+    <p>Este site é um parceiro afiliado independente e pode receber comissão quando você se cadastra na plataforma parceira (Deriv). Não somos a Deriv e não prestamos consultoria financeira.</p>
+    <p id="privacidade"><b>Privacidade (LGPD):</b> usamos seu nome, e-mail e WhatsApp apenas para enviar as instruções e conteúdos sobre o tema. Não vendemos seus dados. Para excluí-los, responda a qualquer e-mail nosso pedindo a exclusão.</p>
+    <p>© <span id="y"></span> Demo Já</p>
+  </footer>
+</div>
+
+<div class="dock" id="dock"><button type="button" class="btn" id="dockBtn">Quero minha conta demo</button></div>
+
+<script>
+// ===== SETTINGS =====
+var APPS_SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE'; // ends with /exec
+var OFFER_URL = 'https://t.deriv.link?t=FTKHU4SSTCVV';
+// ====================
+(function(){
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // PopAds impression ID — LP URL must contain ?imp=[IMPRESSIONID]
+  var q = new URLSearchParams(location.search);
+  var imp = q.get('imp') || q.get('impressionid') || q.get('impressionId') || '';
+  try { if (imp) sessionStorage.setItem('pa_imp', imp); else imp = sessionStorage.getItem('pa_imp') || ''; } catch(e){}
+  document.getElementById('imp').value = imp;
+
+  // Illustrative chart: random walk with ups and downs, drawn once
+  (function(){
+    var pts = [], y = 50, n = 40;
+    for (var i = 0; i < n; i++) { y += (Math.random() - .47) * 12; y = Math.max(6, Math.min(78, y)); pts.push([i * (400 / (n - 1)), y]); }
+    var d = 'M' + pts.map(function(p){ return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' L');
+    var line = document.getElementById('line');
+    line.setAttribute('d', d);
+    document.getElementById('area').setAttribute('d', d + ' L400 84 L0 84 Z');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && line.getTotalLength) {
+      var L = line.getTotalLength();
+      line.style.strokeDasharray = L; line.style.strokeDashoffset = L;
+      line.getBoundingClientRect();
+      line.style.transition = 'stroke-dashoffset 1.6s ease-out';
+      line.style.strokeDashoffset = 0;
+    }
+  })();
+
+  var f = document.getElementById('leadForm'), msg = document.getElementById('msg'), btn = document.getElementById('btn');
+  var phone = document.getElementById('phone'), consentRow = document.getElementById('consentRow');
+
+  // Brazil phone mask: (11) 91234-5678
+  phone.addEventListener('input', function(){
+    var d = phone.value.replace(/\D/g,'').replace(/^55(?=\d{10,11}$)/,'').slice(0,11);
+    var o = d;
+    if (d.length > 2) o = '(' + d.slice(0,2) + ') ' + d.slice(2);
+    if (d.length > 7) o = '(' + d.slice(0,2) + ') ' + d.slice(2, d.length-4) + '-' + d.slice(-4);
+    phone.value = o;
+  });
+
+  function err(el, t){ if (el) { el.classList.add('bad'); el.focus(); } msg.className='msg e'; msg.textContent=t; return false; }
+
+  function validate(){
+    [].forEach.call(f.querySelectorAll('.bad'), function(i){ i.classList.remove('bad'); });
+    consentRow.classList.remove('bad');
+    var n = f.name.value.trim(), e = f.email.value.trim(), p = phone.value.replace(/\D/g,'');
+    if (n.length < 3 || n.split(/\s+/).length < 2) return err(f.name, 'Escreva nome e sobrenome.');
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(e)) return err(f.email, 'Confira o e-mail. Exemplo: voce@gmail.com');
+    if (!/^[1-9]{2}9?\d{8}$/.test(p)) return err(phone, 'Confira o WhatsApp: DDD + número, ex. (11) 91234-5678.');
+    if (!f.consent.checked) { consentRow.classList.add('bad'); f.consent.focus(); msg.className='msg e'; msg.textContent='Marque a caixa de consentimento para continuar.'; return false; }
+    return true;
+  }
+
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if (!validate()) return;
+    btn.disabled = true; btn.textContent = 'Enviando…'; msg.className='msg'; msg.textContent='';
+    var payload = {
+      name: f.name.value.trim(), email: f.email.value.trim(),
+      phone: phone.value.replace(/\D/g,''), consent: f.consent.checked ? '1' : '',
+      website: f.website.value, imp: f.imp.value, ua: navigator.userAgent
+    };
+    // text/plain avoids a CORS preflight, which Apps Script can't answer
+    fetch(APPS_SCRIPT_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok) throw new Error(d.error || 'Erro');
+        btn.textContent = 'Cadastro feito';
+        msg.className='msg ok'; msg.textContent='Pronto! Abrindo a conta demo…';
+        setTimeout(function(){ location.href = OFFER_URL; }, 1100);
+      })
+      .catch(function(e){
+        btn.disabled = false; btn.textContent = 'Quero minha conta demo';
+        msg.className='msg e'; msg.textContent = (e && e.message && e.message !== 'Erro' && e.message.indexOf('fetch') < 0) ? e.message : 'Sem conexão com o servidor. Verifique a internet e toque de novo.';
+      });
+  });
+
+  // Sticky CTA: shown only while the form is off screen
+  var dock = document.getElementById('dock');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){ dock.classList.toggle('on', !es[0].isIntersecting && es[0].boundingClientRect.top < 0); }, {threshold:0})
+      .observe(document.getElementById('form'));
+  }
+  document.getElementById('dockBtn').addEventListener('click', function(){
+    document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(function(){ f.name.focus({preventScroll:true}); }, 400);
+  });
+})();
+</script>
+</body>
+</html>
